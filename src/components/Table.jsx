@@ -1,12 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import UserImage from '../assets/userImage.jpg'
 import TimerIcon from '../assets/timerIcon.svg'
 import Checkbox from '../assets/checkbox.svg'
 
 
 
-function UserCard(props) {
 
+function UserCard(props) {
+    const lastIndex = Array.isArray(props.filteredUsers) ? props.filteredUsers.length - 1 : 0;
   return (
     <TableWrapper>
         <InsideTableHeader>
@@ -31,8 +32,8 @@ function UserCard(props) {
             </TableHeaderTextWrapper>
             <div style={{ width: '20px'}} /> 
         </InsideTableHeader>
-        {props.filteredUsers?.map((item) => ( 
-        <CardWrapper key={item.id}>
+        {props.filteredUsers?.map((item, index) => ( 
+        <CardWrapper key={item.id} $isLast={index === lastIndex}>
             <UserInfoImageAndIcon>
                 <UserImageContainer src={UserImage} alt='user-image'/>
                 <TimerIconContainer src={TimerIcon} alt='timer-icon'/>
@@ -107,8 +108,14 @@ const CardWrapper = styled.div`
     height: 58px;
     padding: 0px 30px 0px 12px;
     border-bottom: 1px solid #F6F4F3;
-    padding: 0px 30px 0px 12px;
     background-color: #fff;
+
+    ${({ $isLast }) =>
+        $isLast &&
+        `
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+        `}
 `;
 const UserInfoImageAndIcon = styled.div`
     width: 44px;
