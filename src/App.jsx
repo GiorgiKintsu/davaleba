@@ -56,7 +56,7 @@ function App() {
       <SideBar />
       <SecondWrapper>
         <Header />
-        <TableHeader setQuery={setQuery} setOption={setOption} allUsers={allUsers}/>
+        <TableHeader query={query} setQuery={setQuery} setOption={setOption} allUsers={allUsers}/>
         <Table filteredUsers={filteredUsers}/>
       </SecondWrapper>
     </MainWrapper>

@@ -24,9 +24,10 @@ function TableHeader(props){
                 <AddBtn>დამატება</AddBtn>
                 <SearchInput>
                     <img src={SearchIcon} alt="serch-icon" />
-                    <input type="text" onChange={(e) => {props.setQuery(e.target.value)}}/>
-                    <img src={XMark} alt="x-mark" />
-                    <img src={FilterIcon} alt="filter-icon" />                      
+                    <input type="text" value={props.query} onChange={(e) => {props.setQuery(e.target.value)}}/>
+                    <img src={XMark} alt="x-mark" onClick={() => {props.setQuery("")}} />
+                    <img src={FilterIcon} alt="filter-icon" />    
+                                      
                 </SearchInput>
             </AddAndSearchWrapper>
 
@@ -98,6 +99,9 @@ const SearchInput = styled.div`
         outline: none;
         border-width: 0px;
       }
+    img{
+        cursor: pointer;
+    }
 `
 const FilterSelect = styled.select`
     width: 150px;
